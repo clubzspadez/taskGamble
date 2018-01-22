@@ -3,8 +3,8 @@ var appRoot = document.getElementById('app');
 let count = 0;
 
 const app = {
-	title: "What's my decison?",
-	subtitle: 'We gon give you a task today!',
+	title: "Task Assigner",
+	subtitle: 'We gon\' give you a task today!',
 	options: []
 }
 
@@ -24,13 +24,29 @@ const removeList = () => {
 	renderAppTest();
 };
 
+const makeChoice =() => {
+	const randNum = Math.floor(Math.random() * app.options.length);
+	const choice = () => {
+		let currentChoice = app.options[randNum];
+		return currentChoice;
+	}
+	console.log(choice());
+};
+
 const renderAppTest = () => {
 var templateTwo = (
     <div>
 			<h1>{app.title}</h1>
+			<h3>{app.subtitle}</h3>
 			<p>{app.options.length > 0 ? 'Here are your options' : 'You currently have no tasks created'}</p>
-			<p>{app.options.length}</p>
+			<button onClick={makeChoice}>LET US CHOOSE FOR YOU</button>
+			{}
 			<button onClick={removeList}>Remove All</button>
+			<ol>
+				{
+					app.options.map((option) => <li key={option}>{option}</li> )
+				}
+			</ol>
 			<form onSubmit={addOption}>
 				<input type="text" name="option"/>
 				<button>Add Your Task!</button>

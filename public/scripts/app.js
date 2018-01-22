@@ -5,8 +5,8 @@ var appRoot = document.getElementById('app');
 var count = 0;
 
 var app = {
-	title: "What's my decison?",
-	subtitle: 'We gon give you a task today!',
+	title: "Task Assigner",
+	subtitle: 'We gon\' give you a task today!',
 	options: []
 };
 
@@ -26,6 +26,15 @@ var removeList = function removeList() {
 	renderAppTest();
 };
 
+var makeChoice = function makeChoice() {
+	var randNum = Math.floor(Math.random() * app.options.length);
+	var choice = function choice() {
+		var currentChoice = app.options[randNum];
+		return currentChoice;
+	};
+	console.log(choice());
+};
+
 var renderAppTest = function renderAppTest() {
 	var templateTwo = React.createElement(
 		'div',
@@ -36,19 +45,35 @@ var renderAppTest = function renderAppTest() {
 			app.title
 		),
 		React.createElement(
+			'h3',
+			null,
+			app.subtitle
+		),
+		React.createElement(
 			'p',
 			null,
 			app.options.length > 0 ? 'Here are your options' : 'You currently have no tasks created'
 		),
 		React.createElement(
-			'p',
-			null,
-			app.options.length
+			'button',
+			{ onClick: makeChoice },
+			'LET US CHOOSE FOR YOU'
 		),
 		React.createElement(
 			'button',
 			{ onClick: removeList },
 			'Remove All'
+		),
+		React.createElement(
+			'ol',
+			null,
+			app.options.map(function (option) {
+				return React.createElement(
+					'li',
+					{ key: option },
+					option
+				);
+			})
 		),
 		React.createElement(
 			'form',
