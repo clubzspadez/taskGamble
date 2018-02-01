@@ -13,6 +13,7 @@ class IndecisionApp extends React.Component {
 		);
 	}
 }
+
 class Header extends React.Component {
 	render(){
 		return (
@@ -44,7 +45,7 @@ class Options extends React.Component {
 	}
 	handleRemoveAll(){
 		let options = this.props.options;
-		console.log(options);
+		
 	}
 
 	render(){
