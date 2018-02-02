@@ -48,49 +48,39 @@ class IndecisionApp extends React.Component {
 	}
 }
 
-class Header extends React.Component {
-	render(){
-		return (
-			<div>
-				<h1>{this.props.title}</h1>
-				<h2>{this.props.subtitle}</h2>
-			</div>
-		);
-	}
+const Header = (props) => {
+	return (
+		<div>
+			<h1>{props.title}</h1>
+			<h2>{props.subtitle}</h2>
+		</div>
+	);
 }
 
-class Action extends React.Component {
-	render(){
-		return (
-			<div>
-				<button onClick={this.props.handlePick} disabled={this.props.hasOptions.length === 0}>What should I do?</button>
-			</div>
-		);
-		
-	}
-}
- 
-class Options extends React.Component {
-	render(){
-		return (
-			<div>
-			<button onClick={this.props.handleDeleteOptions}> Remove All Items</button>
-			{this.props.options.map((option) => <Option  key={option} option={option} />)}
-			</div>
-		);
-	}
+const Action = (props) => {
+	return (
+		<div>
+			<button onClick={props.handlePick} disabled={props.hasOptions.length === 0}>What should I do?</button>
+		</div>
+	);
 }
 
-class Option extends React.Component {
-	render(){
-		return (
-			<div> 
-				
-				<p>{this.props.option}</p>
-			</div>
-		);
-	}
-}
+ const Options = (props) => {
+	return (
+		<div>
+		<button onClick={props.handleDeleteOptions}> Remove All Items</button>
+		{props.options.map((option) => <Option  key={option} option={option} />)}
+		</div>
+	);
+ };
+
+ const Option = (props) => {
+	return (
+		<div> 
+			<p>{props.option}</p>
+		</div>
+	);
+ };
 
 class AddOption extends React.Component {
 	constructor(props){
@@ -102,7 +92,7 @@ class AddOption extends React.Component {
 	}
 	handleAddOption(e) {
 		e.preventDefault();
-		let value = e.target.elements.option.value;
+		let value = e.target.elements.option.value.trim();
 		const error = this.props.handleAddOption(value);
 		
 		this.setState(() => {
@@ -126,4 +116,14 @@ class AddOption extends React.Component {
 	}
 }
 
+//stateless functional component
+
+const User = (props) =>{
+	return(
+		<div>
+			<p>Name: {props.name}</p>
+			<p>Age: {props.age}</p>
+		</div>
+	);
+};
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
