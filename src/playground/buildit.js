@@ -1,82 +1,86 @@
-class VisibilityToggle extends React.Component {
+// class VisibilityToggle extends React.Component {
 
-  constructor(props){
+//   constructor(props){
+//     super(props);
+//     this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
+//     this.state = {
+//       visibility: false
+//     }
+//   }
+
+//   handleToggleVisibility(){
+//     this.setState((prevState) =>{
+//       return {
+//         visibility: !prevState.visibility
+//       }
+//     });
+//   }
+
+//   render(){
+//     return(
+//       <div>
+//         <h1>Visibility Toggle</h1>
+//          <button id="show" onClick={this.handleToggleVisibility}>{this.state.visibility ? 'Hide details' : 'Show details'}</button>
+//          {this.state.visibility && (<p> Here are some details</p>)}
+//       </div>
+//     );
+//   }
+// }
+
+// ReactDOM.render(<VisibilityToggle />, document.getElementById('app'));
+
+class CountApp extends React.Component {
+  constructor(props) {
     super(props);
-    this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
+    this.handleAddOne  = this.handleAddOne.bind(this);
+    this.handleMinusOne = this.handleMinusOne.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    //data we want to re-render 
     this.state = {
-      visibility: false
-    }
+      count: props.count
+    };
   }
 
-  handleToggleVisibility(){
-    this.setState((prevState) =>{
+  handleAddOne(){
+    this.setState((prevState) => { 
       return {
-        visibility: !prevState.visibility
+         count: prevState.count + 1 
       }
     });
   }
 
+  handleMinusOne(){
+    this.setState((prevState) => { 
+      return {
+         count: prevState.count - 1 
+      }
+    });
+  }
+
+  handleReset(){
+    this.setState((prevState) => { 
+      return {
+         count: 0
+      }
+    });
+  }
   render(){
-    return(
+    return (
       <div>
-        <h1>Visibility Toggle</h1>
-         <button id="show" onClick={this.handleToggleVisibility}>{this.state.visibility ? 'Hide details' : 'Show details'}</button>
-         {this.state.visibility && (<p> Here are some details</p>)}
+      <h1>Count: {this.state.count}</h1>
+      <button onClick={this.handleAddOne}>+1</button>
+      <button onClick={this.handleMinusOne}>-1</button>
+      <button onClick={this.handleReset}>Reset</button>
       </div>
-    );
+    ); 
   }
 }
 
-ReactDOM.render(<VisibilityToggle />, document.getElementById('app'));
+CountApp.defaultProps = {
+  count: 0
+}
 
-// class CountApp extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.handleAddOne  = this.handleAddOne.bind(this);
-//     this.handleMinusOne = this.handleMinusOne.bind(this);
-//     this.handleReset = this.handleReset.bind(this);
-//     //data we want to re-render 
-//     this.state = {
-//       count: 0
-//     };
-//   }
-
-//   handleAddOne(){
-//     this.setState((prevState) => { 
-//       return {
-//          count: prevState.count + 1 
-//       }
-//     });
-//   }
-
-//   handleMinusOne(){
-//     this.setState((prevState) => { 
-//       return {
-//          count: prevState.count - 1 
-//       }
-//     });
-//   }
-
-//   handleReset(){
-//     this.setState((prevState) => { 
-//       return {
-//          count: 0
-//       }
-//     });
-//   }
-//   render(){
-//     return (
-//       <div>
-//       <h1>Count: {this.state.count}</h1>
-//       <button onClick={this.handleAddOne}>+1</button>
-//       <button onClick={this.handleMinusOne}>-1</button>
-//       <button onClick={this.handleReset}>Reset</button>
-//       </div>
-//     ); 
-//   }
-// }
-
-// ReactDOM.render(<CountApp />, document.getElementById('app'));
+ReactDOM.render(<CountApp />, document.getElementById('app'));
 /* --------------------------------------------------------------------
 -----------------------------------------------------------------------
 ----------------------------------------------------------------------- */
