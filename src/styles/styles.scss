@@ -1,5 +1,4 @@
-$brand-color: red;
+//imports for partials
+@import './base/_base.scss';
+@import './components/_header.scss';
 
-* {
-  color: $brand-color;
-}
