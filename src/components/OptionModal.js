@@ -8,6 +8,10 @@ const OptionModal = (props) =>
     contentLabel="Selected Option"
     ariaHideApp={false}
     onRequestClose={props.handleClearPick}
+     /*
+    Number indicating the milliseconds to wait before closing the modal.
+     */
+    closeTimeoutMS={200}
   >
     <div>
       {props.selectedOption && <p>{props.selectedOption}</p> }
